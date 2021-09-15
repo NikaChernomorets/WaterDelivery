@@ -1,9 +1,8 @@
-package com.example.demospringboot.service;
+package com.example.demospringboot.service.impl;
 
 import com.example.demospringboot.domain.Customer;
-import com.example.demospringboot.domain.CustomerRepository;
-import com.example.demospringboot.domain.Order;
-import org.springframework.data.jpa.repository.Query;
+import com.example.demospringboot.repository.CustomerRepository;
+import com.example.demospringboot.service.CustomerService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -23,8 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer saveCustomer(@RequestBody Customer requestForSave)
     {
-        Customer customer = repository.save(requestForSave);
-        return customer;
+        return repository.save(requestForSave);
     }
 
     @Override
