@@ -11,7 +11,7 @@ public class CustomerDto {
     private String firstName;
     @Schema(description = "Last name of the customer.", example = "Wonky", required = true)
     private String lastName;
-    
+
     private String phone;
 
     private Boolean isDeleted = Boolean.FALSE;

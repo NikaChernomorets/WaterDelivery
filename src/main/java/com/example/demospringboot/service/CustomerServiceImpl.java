@@ -3,7 +3,6 @@ package com.example.demospringboot.service;
 import com.example.demospringboot.domain.Customer;
 import com.example.demospringboot.domain.CustomerRepository;
 import com.example.demospringboot.domain.Order;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -50,7 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> getCustomerByFirstName(String firstName)
     {
-        List<Customer> customers = repository.findByFirstName(firstName);
+        List<Customer> customers = repository.findByFirstName(firstName, CustomerRepository.pageableAndSortAscByFirstName);
         if (customers.toArray().length < 1)
             throw new EntityNotFoundException("Customer not found with firstName = " + firstName);
         for (int i = 0; i < customers.toArray().length; i++)
@@ -66,7 +65,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> getCustomerByLastName(String lastName)
     {
-        List<Customer> customers = repository.findByLastName(lastName);
+        List<Customer> customers = repository.findByLastName(lastName, CustomerRepository.pageableAndSortAscByLastName);
         if (customers.toArray().length < 1)
             throw new EntityNotFoundException("Customer not found with Lastname = " + lastName);
         for (int i = 0; i < customers.toArray().length; i++)
@@ -82,7 +81,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> getCustomerByPhone(String phone)
     {
-        List<Customer> customers = repository.findByPhone(phone);
+        List<Customer> customers = repository.findByPhone(phone, CustomerRepository.pageableAndSortAscByPhone);
         if (customers.toArray().length < 1)
             throw new EntityNotFoundException("Customer not found with phone = " + phone);
         for (int i = 0; i < customers.toArray().length; i++)
@@ -95,8 +94,8 @@ public class CustomerServiceImpl implements CustomerService {
         return customers;
     }
 
-    /*
-    @Override
+
+ /*   @Override
     public Customer getCustomerByOrder(String orderName)
     {
         List<Order> orderList = getValues(orderName);
@@ -118,8 +117,7 @@ public class CustomerServiceImpl implements CustomerService {
         return null;
     }
     */
-    
-    
+
     @Override
     public Customer updateCustomer(Customer customer)
     {
