@@ -23,6 +23,15 @@ public class Customer {
     @JoinColumn(name = "order_fk")
     private Order order;
 
+    public Customer(long id, String firstName, String lastName, String phone, Boolean isDeleted, Order order) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.isDeleted = isDeleted;
+        this.order = order;
+    }
+
     public Order getOrder() {
         return order;
     }
