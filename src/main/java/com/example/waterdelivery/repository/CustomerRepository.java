@@ -1,5 +1,6 @@
-package com.example.demospringboot.domain;
+package com.example.waterdelivery.repository;
 
+import com.example.waterdelivery.domain.Customer;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
