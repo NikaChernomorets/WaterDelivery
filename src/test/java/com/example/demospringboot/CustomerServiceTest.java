@@ -1,8 +1,8 @@
 package com.example.demospringboot;
 
 import com.example.demospringboot.domain.Customer;
+import com.example.demospringboot.domain.CustomerRepository;
 import com.example.demospringboot.domain.Order;
-import com.example.demospringboot.repository.CustomerRepository;
 import com.example.demospringboot.service.CustomerService;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
