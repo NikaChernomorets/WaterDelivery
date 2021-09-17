@@ -1,6 +1,6 @@
-package com.example.demospringboot.service;
+package com.example.waterdelivery.service;
 
-import com.example.demospringboot.domain.Order;
+import com.example.waterdelivery.domain.Order;
 
 import java.util.List;
 

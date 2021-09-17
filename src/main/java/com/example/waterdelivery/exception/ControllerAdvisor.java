@@ -1,4 +1,4 @@
-package com.example.demospringboot.exception;
+package com.example.waterdelivery.exception;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;

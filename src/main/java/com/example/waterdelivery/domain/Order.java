@@ -1,4 +1,4 @@
-package com.example.demospringboot.domain;
+package com.example.waterdelivery.domain;
 
 import javax.persistence.*;
 

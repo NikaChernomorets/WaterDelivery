@@ -1,9 +1,9 @@
-package com.example.demospringboot.web;
+package com.example.waterdelivery.web;
 
-import com.example.demospringboot.config.CustomerConverter;
-import com.example.demospringboot.domain.Customer;
-import com.example.demospringboot.dto.CustomerDto;
-import com.example.demospringboot.service.CustomerService;
+import com.example.waterdelivery.config.CustomerConverter;
+import com.example.waterdelivery.domain.Customer;
+import com.example.waterdelivery.dto.CustomerDto;
+import com.example.waterdelivery.service.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

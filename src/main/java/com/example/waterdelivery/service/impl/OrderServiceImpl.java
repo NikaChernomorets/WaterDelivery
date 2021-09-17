@@ -1,10 +1,10 @@
-package com.example.demospringboot.service.impl;
+package com.example.waterdelivery.service.impl;
 
-import com.example.demospringboot.domain.Order;
-import com.example.demospringboot.exception.NoDataFoundException;
-import com.example.demospringboot.exception.OrderNotFoundException;
-import com.example.demospringboot.repository.OrderRepository;
-import com.example.demospringboot.service.OrderService;
+import com.example.waterdelivery.domain.Order;
+import com.example.waterdelivery.exception.NoDataFoundException;
+import com.example.waterdelivery.exception.OrderNotFoundException;
+import com.example.waterdelivery.repository.OrderRepository;
+import com.example.waterdelivery.service.OrderService;
 
 import java.util.List;
 

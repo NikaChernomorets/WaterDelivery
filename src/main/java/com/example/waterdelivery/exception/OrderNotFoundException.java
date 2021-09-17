@@ -1,4 +1,4 @@
-package com.example.demospringboot.exception;
+package com.example.waterdelivery.exception;
 
 public class OrderNotFoundException extends RuntimeException {
 

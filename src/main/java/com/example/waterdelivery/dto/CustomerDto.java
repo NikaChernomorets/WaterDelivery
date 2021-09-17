@@ -1,6 +1,6 @@
-package com.example.demospringboot.dto;
+package com.example.waterdelivery.dto;
 
-import com.example.demospringboot.domain.Order;
+import com.example.waterdelivery.domain.Order;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public class CustomerDto {

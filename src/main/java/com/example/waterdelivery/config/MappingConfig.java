@@ -1,7 +1,7 @@
-package com.example.demospringboot.config;
+package com.example.waterdelivery.config;
 
-import com.example.demospringboot.domain.Customer;
-import com.example.demospringboot.dto.CustomerDto;
+import com.example.waterdelivery.domain.Customer;
+import com.example.waterdelivery.dto.CustomerDto;
 import ma.glasnost.orika.MapperFactory;
 import net.rakugakibox.spring.boot.orika.OrikaMapperFactoryConfigurer;
 
