@@ -1,6 +1,6 @@
-package com.example.waterdelivery.repository;
+package waterDelivery.repository;
 
-import com.example.waterdelivery.domain.Order;
+import waterDelivery.domain.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {

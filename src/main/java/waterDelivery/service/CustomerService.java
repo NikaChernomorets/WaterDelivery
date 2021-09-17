@@ -1,6 +1,6 @@
-package com.example.waterdelivery.service;
+package waterDelivery.service;
 
-import com.example.waterdelivery.domain.Customer;
+import waterDelivery.domain.Customer;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package com.example.waterdelivery.service.impl;
+package waterDelivery.service.impl;
 
-import com.example.waterdelivery.domain.Customer;
+import waterDelivery.domain.Customer;
 
-import com.example.waterdelivery.repository.CustomerRepository;
-import com.example.waterdelivery.service.CustomerService;
+import waterDelivery.repository.CustomerRepository;
+import waterDelivery.service.CustomerService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 

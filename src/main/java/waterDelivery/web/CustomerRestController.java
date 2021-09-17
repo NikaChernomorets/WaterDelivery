@@ -1,9 +1,9 @@
-package com.example.waterdelivery.web;
+package waterDelivery.web;
 
-import com.example.waterdelivery.config.CustomerConverter;
-import com.example.waterdelivery.domain.Customer;
-import com.example.waterdelivery.dto.CustomerDto;
-import com.example.waterdelivery.service.CustomerService;
+import waterDelivery.config.CustomerConverter;
+import waterDelivery.domain.Customer;
+import waterDelivery.dto.CustomerDto;
+import waterDelivery.service.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -35,7 +35,7 @@ public class CustomerRestController {
             @ApiResponse(responseCode = "201", description = "Customer created"),
             @ApiResponse(responseCode = "400", description = "Invalid input"),
             @ApiResponse(responseCode = "409", description = "Customer already exists")})
-    public CustomerDto saveCustomer(@RequestBody CustomerDto requestForSave) {
+    public CustomerDto saveCustomer( @RequestBody CustomerDto requestForSave ) {
 
         Customer customer = converter.getMapperFacade().map(requestForSave, Customer.class);
         CustomerDto dto = converter.toDto(service.saveCustomer(customer));

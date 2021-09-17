@@ -1,7 +1,7 @@
-package com.example.waterdelivery.config;
+package waterDelivery.config;
 
-import com.example.waterdelivery.domain.Customer;
-import com.example.waterdelivery.dto.CustomerDto;
+import waterDelivery.domain.Customer;
+import waterDelivery.dto.CustomerDto;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ public class CustomerConverter {
         return mapperFacade;
     }
 
-    public CustomerDto toDto(Customer entity) {
+    public CustomerDto toDto( Customer entity ) {
         return mapperFacade.map(entity, CustomerDto.class);
     }
 

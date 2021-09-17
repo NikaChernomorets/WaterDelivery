@@ -1,7 +1,7 @@
-package com.example.waterdelivery.config;
+package waterDelivery.config;
 
-import com.example.waterdelivery.domain.Customer;
-import com.example.waterdelivery.dto.CustomerDto;
+import waterDelivery.domain.Customer;
+import waterDelivery.dto.CustomerDto;
 import ma.glasnost.orika.MapperFactory;
 import net.rakugakibox.spring.boot.orika.OrikaMapperFactoryConfigurer;
 
@@ -10,7 +10,7 @@ public class MappingConfig implements OrikaMapperFactoryConfigurer {
     @Override
     public void configure(MapperFactory mapperFactory) {
 
-        mapperFactory.classMap(Customer.class, CustomerDto.class)
+        mapperFactory.classMap(Customer.class, CustomerDto.class )
                 .customize(new CustomerMapper())
                 .byDefault()
                 .register();

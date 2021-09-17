@@ -1,10 +1,10 @@
-package com.example.waterdelivery.service.impl;
+package waterDelivery.service.impl;
 
-import com.example.waterdelivery.domain.Order;
-import com.example.waterdelivery.exception.NoDataFoundException;
-import com.example.waterdelivery.exception.OrderNotFoundException;
-import com.example.waterdelivery.repository.OrderRepository;
-import com.example.waterdelivery.service.OrderService;
+import waterDelivery.domain.Order;
+import waterDelivery.exception.NoDataFoundException;
+import waterDelivery.exception.OrderNotFoundException;
+import waterDelivery.repository.OrderRepository;
+import waterDelivery.service.OrderService;
 
 import java.util.List;
 

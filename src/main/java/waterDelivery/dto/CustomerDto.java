@@ -1,6 +1,6 @@
-package com.example.waterdelivery.dto;
+package waterDelivery.dto;
 
-import com.example.waterdelivery.domain.Order;
+import waterDelivery.domain.Order;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public class CustomerDto {

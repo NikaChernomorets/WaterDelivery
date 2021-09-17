@@ -1,4 +1,4 @@
-package com.example.waterdelivery.exception;
+package waterDelivery.exception;
 
 public class OrderNotFoundException extends RuntimeException {
 

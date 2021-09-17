@@ -1,11 +1,12 @@
-package com.example.waterdelivery;
+package waterDelivery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoSpringBootApplication {
+public class WaterDeliveryApplication
+{
     public static void main(String[] args) {
-        SpringApplication.run(DemoSpringBootApplication.class, args);
+        SpringApplication.run( WaterDeliveryApplication.class, args );
     }
 }

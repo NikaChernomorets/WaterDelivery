@@ -1,12 +1,12 @@
-package com.example.waterdelivery.service;
+package waterDelivery.service;
 
-import com.example.waterdelivery.domain.Order;
+import waterDelivery.domain.Order;
 
 import java.util.List;
 
 public interface OrderService {
 
-    Order saveOrder(Order order);
+    Order saveOrder( Order order );
 
     Order getOrderById(Long id);
 

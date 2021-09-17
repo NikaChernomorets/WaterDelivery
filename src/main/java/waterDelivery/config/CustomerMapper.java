@@ -1,7 +1,7 @@
-package com.example.waterdelivery.config;
+package waterDelivery.config;
 
-import com.example.waterdelivery.domain.Customer;
-import com.example.waterdelivery.dto.CustomerDto;
+import waterDelivery.domain.Customer;
+import waterDelivery.dto.CustomerDto;
 import ma.glasnost.orika.CustomMapper;
 import ma.glasnost.orika.MappingContext;
 

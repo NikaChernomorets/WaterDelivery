@@ -1,4 +1,4 @@
-package com.example.waterdelivery.domain;
+package waterDelivery.domain;
 
 import javax.persistence.*;
 
