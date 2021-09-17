@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>demoSpringBoot</artifactId>
+    <artifactId>water-delivery-system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demoSpringBoot</name>
-    <description>Demo project for Spring Boot</description>
+    <name>WaterDelivery</name>
+    <description>WaterDelivery API on Spring Boot</description>
     <properties>
         <java.version>8</java.version>
     </properties>
@@ -26,13 +26,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.18</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -51,7 +44,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.2.26</version>
+            <version>1.5.10</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -72,7 +65,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.2.18</version>
+            <version>42.2.23.jre7</version>
             <scope>runtime</scope>
         </dependency>
 
