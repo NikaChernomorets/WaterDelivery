@@ -1,8 +1,8 @@
 package com.example.demospringboot;
 
 import com.example.demospringboot.domain.Customer;
-import com.example.demospringboot.domain.CustomerRepository;
 import com.example.demospringboot.domain.Order;
+import com.example.demospringboot.repository.CustomerRepository;
 import com.example.demospringboot.service.CustomerService;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
@@ -29,8 +29,8 @@ public class CustomerServiceTest {
 
     @Test
     public void contains_NotValidId_Success() {
-        testEntityManager.merge(new Customer(1L, "Wlada", "","33",Boolean.FALSE,new Order()));
-        testEntityManager.merge(new Customer(2L, "Wlada", "","33",Boolean.FALSE,new Order()));
+        testEntityManager.merge(new Customer(1L, "Wlada", "", "33", Boolean.FALSE, new Order()));
+        testEntityManager.merge(new Customer(2L, "Wlada", "", "33", Boolean.FALSE, new Order()));
         Customer isContains = service.getCustomerById(3L);
         assertNull(isContains);
     }
@@ -38,7 +38,7 @@ public class CustomerServiceTest {
     @Ignore
     @Test
     public void contains_ValidId_Success() {
-        Customer object = new Customer(1L, "Wlada", "","33",Boolean.FALSE,new Order());
+        Customer object = new Customer(1L, "Wlada", "", "33", Boolean.FALSE, new Order());
         testEntityManager.merge(object);
         boolean isContains = repository.existsById(1L);
         assertEquals(false, isContains);
