@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> getAllUsers()
+    public List<Customer> getAllCustomers()
     {
         return repository.findAll();
     }
@@ -143,7 +143,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void removeAllUsers()
+    public void removeAllCustomers()
     {
         repository.deleteAll();
     }

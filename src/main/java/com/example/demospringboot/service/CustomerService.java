@@ -9,14 +9,14 @@ import java.util.List;
 public interface CustomerService {
 
     /**
-     * Save new employee.
+     * Save new customer.
      *
      * @param requestForSave {@link Customer}.
      * @return DTO representation for saved customer.
      */
     Customer saveCustomer(Customer requestForSave);
 
-    List<Customer> getAllUsers();
+    List<Customer> getAllCustomers();
 
     Customer getCustomerById(final Long id);
 
@@ -34,6 +34,6 @@ public interface CustomerService {
 
     void removeCustomerById(final Long id);
 
-    void removeAllUsers();
+    void removeAllCustomers();
 
 }
