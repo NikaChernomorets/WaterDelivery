@@ -1,12 +1,14 @@
 package waterDelivery.domain;
 
 import javax.persistence.*;
+
 import lombok.*;
 
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table( name = "ORDERS" )
 public class Order
@@ -25,9 +27,8 @@ public class Order
     
     private String cost;
     
-    @OneToOne( mappedBy = "order" ) private Customer customer;
-    
-    public Order() { }
+    @OneToOne( mappedBy = "order" )
+    private Customer customer;
 }
 
 

@@ -1,8 +1,7 @@
 package waterDelivery.web;
 
-import waterDelivery.config.CustomerConverter;
 import waterDelivery.domain.Customer;
-import waterDelivery.dto.CustomerDto;
+import waterDelivery.dto.CustomerDTO;
 import waterDelivery.service.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -35,10 +34,11 @@ public class CustomerRestController {
             @ApiResponse(responseCode = "201", description = "Customer created"),
             @ApiResponse(responseCode = "400", description = "Invalid input"),
             @ApiResponse(responseCode = "409", description = "Customer already exists")})
-    public CustomerDto saveCustomer( @RequestBody CustomerDto requestForSave ) {
+    public CustomerDTO saveCustomer( @RequestBody
+                                             CustomerDTO requestForSave ) {
 
         Customer customer = converter.getMapperFacade().map(requestForSave, Customer.class);
-        CustomerDto dto = converter.toDto(service.saveCustomer(customer));
+        CustomerDTO dto = converter.toDto( service.saveCustomer( customer ) );
 
         return dto;
     }
@@ -46,7 +46,7 @@ public class CustomerRestController {
     //Получение списка клиентов
     @GetMapping("/customers")
     @ResponseStatus(HttpStatus.OK)
-    public List<CustomerDto> getAllCustomers() {
+    public List<CustomerDTO> getAllCustomers() {
 
         return null;
     }
@@ -54,20 +54,21 @@ public class CustomerRestController {
     //Получения клиента по id
     @GetMapping("/customers/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CustomerDto getCustomerById(@PathVariable long id) {
+    public CustomerDTO getCustomerById( @PathVariable long id ) {
         Customer entity = service.getCustomerById(id);
-        CustomerDto dto = converter.toDto(entity);
+        CustomerDTO dto = converter.toDto( entity );
         return dto;
     }
 
     //Обновление клиента
     @PutMapping("/customers/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CustomerDto refreshCustomer(@PathVariable("id") long id, @RequestBody CustomerDto requestForUpdate) {
+    public CustomerDTO refreshCustomer( @PathVariable( "id") long id, @RequestBody
+            CustomerDTO requestForUpdate ) {
 
         Customer entity = service.getCustomerById(id);
         converter.getMapperFacade().map(requestForUpdate, entity);
-        CustomerDto dto = converter.toDto(service.updateCustomer(entity));
+        CustomerDTO dto = converter.toDto( service.updateCustomer( entity ) );
 
         return dto;
     }

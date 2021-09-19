@@ -9,6 +9,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table( name = "CUSTOMERS" )
 public class Customer
@@ -29,8 +30,6 @@ public class Customer
                fetch = FetchType.EAGER )
     @JoinColumn( name = "order_fk" )
     private Order order;
-    
-    public Customer() { }
     
     @Override
     public boolean equals( Object o )
