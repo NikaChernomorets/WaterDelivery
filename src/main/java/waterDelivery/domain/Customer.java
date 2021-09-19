@@ -1,82 +1,49 @@
 package waterDelivery.domain;
 
+import lombok.*;
+import org.hibernate.Hibernate;
 import javax.persistence.*;
+import java.util.Objects;
 
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
 @Entity
-@Table(name = "CUSTOMERS")
-public class Customer {
-
+@Table( name = "CUSTOMERS" )
+public class Customer
+{
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue( strategy = GenerationType.SEQUENCE )
     private long id;
-
+    
     private String firstName;
-
+    
     private String lastName;
-
+    
     private String phone;
-
-    @Column(name = "is_deleted")
-    private Boolean isDeleted = Boolean.FALSE;
-
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_fk")
+    
+    @Column( name = "is_deleted" ) private Boolean isDeleted = Boolean.FALSE;
+    
+    @OneToOne( cascade = CascadeType.PERSIST,
+               fetch = FetchType.EAGER )
+    @JoinColumn( name = "order_fk" )
     private Order order;
-
-    public Customer(long id, String firstName, String lastName, String phone, Boolean isDeleted, Order order) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.isDeleted = isDeleted;
-        this.order = order;
+    
+    public Customer() { }
+    
+    @Override
+    public boolean equals( Object o )
+    {
+        if ( this == o ) return true;
+        if ( o == null || Hibernate.getClass( this ) != Hibernate.getClass( o ) ) return false;
+        Customer customer = ( Customer ) o;
+        return Objects.equals( id , customer.id );
     }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String name) {
-        this.firstName = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String email) {
-        this.lastName = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String country) {
-        this.phone = country;
-    }
-
-    public Boolean getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(Boolean deleted) {
-        isDeleted = deleted;
+    
+    @Override
+    public int hashCode()
+    {
+        return 0;
     }
 }
