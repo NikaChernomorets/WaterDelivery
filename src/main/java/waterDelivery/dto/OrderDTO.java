@@ -9,9 +9,9 @@ import lombok.AllArgsConstructor;
 public class OrderDTO
 {
     @Schema(description = "Name of the order.", example = "[№]Order_[Name_LastName]", required = true)
-    private String name;
+    private String orderName;
     
-    private String status;
+    private String customerStatus;
     
-    private String cost;
+    private String customerCost;
 }
