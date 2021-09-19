@@ -20,7 +20,6 @@
     </properties>
 
     <dependencies>
-
         <!-- START of spring boot dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

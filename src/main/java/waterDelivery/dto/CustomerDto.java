@@ -2,7 +2,11 @@ package waterDelivery.dto;
 
 import waterDelivery.domain.Order;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.AllArgsConstructor;
 
+@Data
+@AllArgsConstructor
 public class CustomerDto {
 
     private Long id;
@@ -17,64 +21,4 @@ public class CustomerDto {
     private Boolean isDeleted = Boolean.FALSE;
 
     private Order order;
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-
-    public String getFirstName()
-    {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
-    }
-
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
-
-    public String getPhone()
-    {
-        return phone;
-    }
-
-    public void setPhone(String phone)
-    {
-        this.phone = phone;
-    }
-
-    public Boolean getDeleted()
-    {
-        return isDeleted;
-    }
-
-    public void setDeleted(Boolean deleted)
-    {
-        isDeleted = deleted;
-    }
-
-    public Order getOrder()
-    {
-        return order;
-    }
-
-    public void setOrder(Order order)
-    {
-        this.order = order;
-    }
 }
