@@ -9,26 +9,23 @@
 ---
 
 ### :robot: Technologies used in the application:
+```sh
+Spring Boot, Spring Data, Hibernate, PostgreSQL
 
-    Spring Boot, Spring Data, Hibernate, PostgreSQL
+As client - Postman
 
-    As client - Postman
-    
-    For documentation - Swagger
+For documentation - Swagger
 
-    Logging - (soon)
-
+Logging - (soon)
+```
 ###   :computer: How to start application?
 
 1. Make a fork from this project or clone repository.
 
 2. Build this application using Maven.
 
-
 >mvn clean install
 
-
 3. Run .jar file.
-
 
 >java -jar water-delivery-system-0.0.1-SNAPSHOT.jar
