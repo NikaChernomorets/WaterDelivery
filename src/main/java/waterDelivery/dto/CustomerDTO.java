@@ -10,11 +10,11 @@ import lombok.AllArgsConstructor;
 public class CustomerDTO
 {
     @Schema(description = "Name of the customer.", example = "Billy", required = true)
-    private String firstName;
+    private String customerFirstName;
     @Schema(description = "Last name of the customer.", example = "Wonky", required = true)
-    private String lastName;
+    private String customerLastName;
 
-    private String phone;
+    private String customerPhone;
 
-    private Order order;
+    private Order customerOrder;
 }
