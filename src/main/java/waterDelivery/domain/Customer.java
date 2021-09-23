@@ -2,7 +2,6 @@ package waterDelivery.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.Hibernate;
-
 import javax.persistence.*;
 import java.util.Objects;
 
