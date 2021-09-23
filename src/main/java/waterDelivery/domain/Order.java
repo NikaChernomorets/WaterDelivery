@@ -2,13 +2,6 @@ package waterDelivery.domain;
 
 import javax.persistence.*;
 
-import lombok.*;
-
-@Getter
-@Setter
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table( name = "ORDERS" )
 public class Order
@@ -27,9 +20,77 @@ public class Order
     
     private String cost;
     
-    @OneToOne( mappedBy = "order" )
-    private Customer customer;
+    @OneToOne( mappedBy = "order" ) private Customer customer;
+    
+    public long getId()
+    {
+        return id;
+    }
+    
+    public void setId( long id )
+    {
+        this.id = id;
+    }
+    
+    public String getName()
+    {
+        return name;
+    }
+    
+    public void setName( String name )
+    {
+        this.name = name;
+    }
+    
+    public String getStartDate()
+    {
+        return startDate;
+    }
+    
+    public void setStartDate( String startDate )
+    {
+        this.startDate = startDate;
+    }
+    
+    public String getEndDate()
+    {
+        return EndDate;
+    }
+    
+    public void setEndDate( String endDate )
+    {
+        EndDate = endDate;
+    }
+    
+    public String getStatus()
+    {
+        return status;
+    }
+    
+    public void setStatus( String status )
+    {
+        this.status = status;
+    }
+    
+    public String getCost()
+    {
+        return cost;
+    }
+    
+    public void setCost( String cost )
+    {
+        this.cost = cost;
+    }
+    
+    public Customer getCustomer()
+    {
+        return customer;
+    }
+    
+    public void setCustomer( Customer customer )
+    {
+        this.customer = customer;
+    }
+    
+    public Order() { }
 }
-
-
-
