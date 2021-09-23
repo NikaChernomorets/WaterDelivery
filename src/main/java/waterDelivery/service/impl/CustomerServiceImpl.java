@@ -39,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Customer not found with id = " + id));
 
-        if (customer.getIsDeleted())
+        if (customer.getDeleted())
         {
             throw new EntityNotFoundException("Customer was deleted with id = " + id);
         }
@@ -55,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
             throw new EntityNotFoundException("Customer not found with firstName = " + firstName);
         for (int i = 0; i < customers.toArray().length; i++)
         {
-            if (customers.get(i).getIsDeleted())
+            if (customers.get(i).getDeleted())
             {
                 customers.remove(i--);
             }
@@ -71,7 +71,7 @@ public class CustomerServiceImpl implements CustomerService {
             throw new EntityNotFoundException("Customer not found with Lastname = " + lastName);
         for (int i = 0; i < customers.toArray().length; i++)
         {
-            if (customers.get(i).getIsDeleted())
+            if (customers.get(i).getDeleted())
             {
                 customers.remove(i--);
             }
@@ -87,7 +87,7 @@ public class CustomerServiceImpl implements CustomerService {
             throw new EntityNotFoundException("Customer not found with phone = " + phone);
         for (int i = 0; i < customers.toArray().length; i++)
         {
-            if (customers.get(i).getIsDeleted())
+            if (customers.get(i).getDeleted())
             {
                 customers.remove(i--);
             }
@@ -137,7 +137,7 @@ public class CustomerServiceImpl implements CustomerService {
     {
         repository.findById(id)
                 .map(customer -> {
-                    customer.setIsDeleted(Boolean.TRUE);
+                    customer.setDeleted(Boolean.TRUE);
                     return repository.save(customer);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Customer not found with id = " + id));
