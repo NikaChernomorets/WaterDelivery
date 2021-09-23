@@ -25,12 +25,13 @@ public class Customer
     
     private String phone;
     
-    @Column( name = "is_deleted" ) private Boolean isDeleted = Boolean.FALSE;
+    @Column( name = "is_deleted" )
+    private Boolean isDeleted = Boolean.FALSE;
     
     @OneToOne( cascade = CascadeType.PERSIST,
                fetch = FetchType.EAGER )
     @JoinColumn( name = "order_fk" )
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty( access = JsonProperty.Access.WRITE_ONLY )
     private Order order;
     
     @Override

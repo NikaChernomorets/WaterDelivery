@@ -3,10 +3,8 @@ package waterDelivery.dto;
 import waterDelivery.domain.Order;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-import lombok.AllArgsConstructor;
 
 @Data
-@AllArgsConstructor
 public class CustomerDTO
 {
     @Schema(description = "Name of the customer.", example = "Billy", required = true)
