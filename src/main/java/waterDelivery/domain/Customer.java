@@ -1,5 +1,6 @@
 package waterDelivery.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.Hibernate;
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class Customer
     @OneToOne( cascade = CascadeType.PERSIST,
                fetch = FetchType.EAGER )
     @JoinColumn( name = "order_fk" )
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Order order;
     
     @Override
