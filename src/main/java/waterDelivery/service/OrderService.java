@@ -1,9 +1,11 @@
 package waterDelivery.service;
 
+import org.springframework.stereotype.Service;
 import waterDelivery.domain.Order;
 
 import java.util.List;
 
+@Service
 public interface OrderService {
 
     Order saveOrder( Order order );

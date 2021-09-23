@@ -1,5 +1,6 @@
 package waterDelivery.service.impl;
 
+import org.springframework.stereotype.Service;
 import waterDelivery.domain.Order;
 import waterDelivery.exception.NoDataFoundException;
 import waterDelivery.exception.OrderNotFoundException;
@@ -8,6 +9,7 @@ import waterDelivery.service.OrderService;
 
 import java.util.List;
 
+@Service
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
