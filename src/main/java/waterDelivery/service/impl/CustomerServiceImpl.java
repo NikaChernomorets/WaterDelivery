@@ -1,16 +1,20 @@
 package waterDelivery.service.impl;
 
-import waterDelivery.domain.Customer;
 
-import waterDelivery.repository.CustomerRepository;
-import waterDelivery.service.CustomerService;
+import lombok.extern.slf4j.Slf4j;
+import lombok.var;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import waterDelivery.domain.Customer;
+import waterDelivery.repository.CustomerRepository;
+import waterDelivery.service.CustomerService;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
+
+@Slf4j
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository repository;
@@ -21,11 +25,20 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Customer saveCustomer(@RequestBody Customer customer) {
+        log.info("saveCustomer() - start: customer = {}", customer);
+        var savedCustomer = repository.save(customer);
+        log.info("saveCustomer() - end: savedCustomer() = {}", savedCustomer.getId());
+        return savedCustomer;
+    }
+/*    @Override
     public Customer saveCustomer(@RequestBody Customer requestForSave)
     {
-        Customer customer = repository.save(requestForSave);
-        return customer;
-    }
+        log.info("saveCustomer() - start: customer = {}", requestForSave);
+        var savedCustomer = repository.save(requestForSave);
+        log.info("saveCustomer() - end: savedCustomer() = {}", savedCustomer.getId());
+        return savedCustomer;
+    }*/
 
     @Override
     public List<Customer> getAllCustomers()
