@@ -19,7 +19,7 @@ public interface CustomerRestController {
     @ResponseStatus(HttpStatus.OK)
     List<Customer> getAll();
 
-    @GetMapping("/{id}")
+    @GetMapping("/customers/{id}")
     @Operation(summary = "Get Customer by Id", description = "endpoint for getting C by ID", tags = {"Customer"})
     @ResponseStatus(HttpStatus.OK)
     CustomerDTO getById(@PathVariable long id);
