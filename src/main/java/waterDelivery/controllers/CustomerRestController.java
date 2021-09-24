@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/default")
 public interface CustomerRestController {
 
-    @GetMapping("/")
+    @GetMapping("/customers")
     @Operation(summary = "Get All customers", description = "endpoint for getting All customers", tags = {"Customer"})
     @ResponseStatus(HttpStatus.OK)
     List<Customer> getAll();
