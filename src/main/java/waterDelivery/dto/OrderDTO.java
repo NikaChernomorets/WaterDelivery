@@ -6,10 +6,15 @@ public class OrderDTO
 {
     @Schema( description = "Name of the order.",
              example = "[№]Order_[Name_LastName]",
-             required = true ) private String orderName;
-    
+             required = true )
+    private String orderName;
+    @Schema( description = "Status of the order.",
+            example = "Order [IN PROGRESS]",
+            required = true )
     private String orderStatus;
-    
+    @Schema( description = "How coast the order.",
+            example = "Order Coast: [500$]",
+            required = true )
     private String orderCost;
     
     public OrderDTO() { }
