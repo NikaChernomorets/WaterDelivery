@@ -1,56 +1,51 @@
 package waterDelivery.dto;
 
-import waterDelivery.domain.Order;
 import io.swagger.v3.oas.annotations.media.Schema;
+import waterDelivery.domain.Order;
 
-public class CustomerDTO
-{
-    @Schema( description = "Name of the customer.",
-             example = "Billy",
-             required = true ) private String customerFirstName;
-    @Schema( description = "Last name of the customer.",
-             example = "Wonky",
-             required = true ) private String customerLastName;
-    
-    private String customerPhone;
-    
-    private Order customerOrder;
-    
-    public CustomerDTO() { }
-    
-    public String getCustomerFirstName()
-    {
-        return customerFirstName;
+public class CustomerDTO {
+    @Schema(description = "Name of the customer.",
+            example = "Billy",
+            required = true)
+    private String firstName;
+    @Schema(description = "Last name of the customer.",
+            example = "Wonky",
+            required = true)
+    private String lastName;
+
+    private String phone;
+
+    private Order order;
+
+    public String getFirstName() {
+        return firstName;
     }
-    
-    public void setCustomerFirstName( String customerFirstName )
-    { this.customerFirstName = customerFirstName; }
-    
-    public String getCustomerLastName()
-    {
-        return customerLastName;
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
-    
-    public void setCustomerLastName( String customerLastName )
-    { this.customerLastName = customerLastName; }
-    
-    public String getCustomerPhone()
-    {
-        return customerPhone;
+
+    public String getLastName() {
+        return lastName;
     }
-    
-    public void setCustomerPhone( String customerPhone )
-    {
-        this.customerPhone = customerPhone;
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
-    
-    public Order getCustomerOrder()
-    {
-        return customerOrder;
+
+    public String getPhone() {
+        return phone;
     }
-    
-    public void setCustomerOrder( Order customerOrder )
-    {
-        this.customerOrder = customerOrder;
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
