@@ -12,9 +12,13 @@ public class CustomerDTO {
             example = "Wonky",
             required = true)
     private String lastName;
-
+    @Schema(description = "Phone number of the customer.",
+            example = " 937-99-92",
+            required = true)
     private String phone;
-
+    @Schema(description = "Order of the customer.",
+            example = "№ Order",
+            required = true)
     private Order order;
 
     public String getFirstName() {

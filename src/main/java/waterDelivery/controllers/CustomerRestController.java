@@ -14,12 +14,12 @@ import java.util.List;
 @RequestMapping("/default")
 public interface CustomerRestController {
 
-    @GetMapping("/")
+    @GetMapping("/customers")
     @Operation(summary = "Get All customers", description = "endpoint for getting All customers", tags = {"Customer"})
     @ResponseStatus(HttpStatus.OK)
     List<Customer> getAll();
 
-    @GetMapping("/{id}")
+    @GetMapping("/customers/{id}")
     @Operation(summary = "Get Customer by Id", description = "endpoint for getting C by ID", tags = {"Customer"})
     @ResponseStatus(HttpStatus.OK)
     CustomerDTO getById(@PathVariable long id);
