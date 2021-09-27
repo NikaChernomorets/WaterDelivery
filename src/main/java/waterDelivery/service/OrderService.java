@@ -16,7 +16,4 @@ public interface OrderService {
 
     Order updateOrder(final Order order);
 
-    void removeOrderById(final Long id);
-
-    void removeAllOrders();
 }

@@ -63,18 +63,4 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new EntityNotFoundException("Order not found with id = " + order.getId()));
     }
 
-    @Override
-    public void removeOrderById(Long id) {
-        log.info("removeOrderById - succeed");
-        orderRepository.delete(orderRepository.findById(id)
-                .orElseThrow(() -> new OrderNotFoundException(id)));
-    }
-
-    @Override
-    public void removeAllOrders() {
-        log.info("removeAllOrders - succeed");
-        orderRepository.deleteAll();
-    }
-
-
 }

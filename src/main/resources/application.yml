@@ -17,7 +17,7 @@ spring:
     generate-ddl: true
 # Server configuration
 server:
-  port: 8088 #set your port
+  port: 8089 #set your port
 # Swagger configuration
 springdoc:
   swagger-ui:
