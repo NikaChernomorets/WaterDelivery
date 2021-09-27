@@ -18,12 +18,13 @@ public interface OrderRestController {
     @ResponseStatus(HttpStatus.OK)
     List<Order> getAll();
 
-    @GetMapping("/customers/{id}")
+    @GetMapping("/orders/{id}")
     @Operation(summary = "Get order by Id", description = "endpoint for getting order by ID", tags = {"Order"})
     @ResponseStatus(HttpStatus.OK)
     OrderReadDTO getById(@PathVariable long id);
 /*
-    @PostMapping("/customers")
+    @PostMapping("/orders
+  ")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add a new order", description = "endpoint for creating an entity", tags = {"Order"})
     @ApiResponses(value = {
