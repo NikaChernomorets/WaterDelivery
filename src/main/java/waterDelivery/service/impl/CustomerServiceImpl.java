@@ -2,7 +2,6 @@ package waterDelivery.service.impl;
 
 
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import waterDelivery.domain.Customer;
@@ -18,36 +17,34 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository repository;
 
-    public CustomerServiceImpl(CustomerRepository repository)
-    {
+    public CustomerServiceImpl(CustomerRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public Customer saveCustomer(@RequestBody Customer customer) {
         log.info("saveCustomer() - start: customer = {}", customer);
-        var savedCustomer = repository.save(customer);
+        Customer savedCustomer = repository.save(customer);
         log.info("saveCustomer() - end: savedCustomer() = {}", savedCustomer.getId());
         return savedCustomer;
     }
 
     @Override
-    public List<Customer> getAllCustomers()
-    {
+    public List<Customer> getAllCustomers() {
         log.info("repository.findAll() - start");
-        var findAllUsers = repository.findAll();
+        List<Customer> findAllUsers = repository.findAll();
         log.info("findAll() - end");
         return findAllUsers;
     }
 
     @Override
-    public Customer getCustomerById(Long id)
-    {   log.info("repository.findById() - start");
-        var customer = repository.findById(id)
-                .orElseThrow(() ->  new EntityNotFoundException("Customer not found with id = " + id));
+    public Customer getCustomerById(Long id) {
+        log.info("repository.findById() - start");
+        Customer customer = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Customer not found with id = " + id));
 
-        if (customer.getDeleted())
-        {   log.error("Customer is Deleted - yes");
+        if (customer.getDeleted()) {
+            log.error("Customer is Deleted - yes");
             throw new EntityNotFoundException("Customer was deleted with id = " + id);
         }
         log.info("findById() - end");
@@ -55,16 +52,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> getCustomerByFirstName(String firstName)
-    {
+    public List<Customer> getCustomerByFirstName(String firstName) {
         List<Customer> customers = repository.findByFirstName(firstName, CustomerRepository.pageableAndSortAscByFirstName);
-        log.info("getCustomerByFirstName - succeed");
+        log.debug("getCustomerByFirstName - succeed");
         if (customers.toArray().length < 1)
             throw new EntityNotFoundException("Customer not found with firstName = " + firstName);
-        for (int i = 0; i < customers.toArray().length; i++)
-        {
-            if (customers.get(i).getDeleted())
-            {
+        for (int i = 0; i < customers.toArray().length; i++) {
+            if (customers.get(i).getDeleted()) {
                 customers.remove(i--);
             }
         }
@@ -72,16 +66,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> getCustomerByLastName(String lastName)
-    {
+    public List<Customer> getCustomerByLastName(String lastName) {
         List<Customer> customers = repository.findByLastName(lastName, CustomerRepository.pageableAndSortAscByLastName);
         log.info("getCustomerByLastName - succeed");
         if (customers.toArray().length < 1)
             throw new EntityNotFoundException("Customer not found with Lastname = " + lastName);
-        for (int i = 0; i < customers.toArray().length; i++)
-        {
-            if (customers.get(i).getDeleted())
-            {
+        for (int i = 0; i < customers.toArray().length; i++) {
+            if (customers.get(i).getDeleted()) {
                 customers.remove(i--);
             }
         }
@@ -89,20 +80,27 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> getCustomerByPhone(String phone)
-    {
+    public List<Customer> getCustomerByPhone(String phone) {
         List<Customer> customers = repository.findByPhone(phone, CustomerRepository.pageableAndSortAscByPhone);
         log.info("getCustomerByPhone - succeed");
         if (customers.toArray().length < 1)
             throw new EntityNotFoundException("Customer not found with phone = " + phone);
-        for (int i = 0; i < customers.toArray().length; i++)
-        {
-            if (customers.get(i).getDeleted())
-            {
+        for (int i = 0; i < customers.toArray().length; i++) {
+            if (customers.get(i).getDeleted()) {
                 customers.remove(i--);
             }
         }
         return customers;
+    }
+
+    @Override
+    public void changePhone(String newPhone, Long id) {
+        log.info("changePhone() - start");
+        repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Customer not found with id = " + id));
+        repository.changeCustomerPhone(newPhone, id);
+        log.debug("changePhone() - end");
+
     }
 
 
@@ -130,8 +128,8 @@ public class CustomerServiceImpl implements CustomerService {
     */
 
     @Override
-    public Customer updateCustomer(Customer customer)
-    {   log.info("updateCustomer - succeed");
+    public Customer updateCustomer(Customer customer) {
+        log.info("updateCustomer - succeed");
         return repository.findById(customer.getId())
                 .map(entity -> {
                     entity.setFirstName(customer.getFirstName());
@@ -143,8 +141,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void removeCustomerById(Long id)
-    {   log.info("removeCustomerById - succeed");
+    public void removeCustomerById(Long id) {
+        log.info("removeCustomerById - succeed");
         repository.findById(id)
                 .map(customer -> {
                     customer.setDeleted(Boolean.TRUE);
@@ -154,8 +152,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void removeAllCustomers()
-    {
+    public void removeAllCustomers() {
         log.info("removeAllCustomers - succeed");
         repository.deleteAll();
     }

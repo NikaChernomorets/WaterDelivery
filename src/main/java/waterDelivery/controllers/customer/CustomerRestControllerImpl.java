@@ -1,27 +1,30 @@
 package waterDelivery.controllers.customer;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import waterDelivery.config.mapper.CustomerMapper;
 import waterDelivery.domain.Customer;
-import waterDelivery.dto.customerDTO.CustomerDeleteDTO;
-import waterDelivery.dto.customerDTO.CustomerReadDTO;
-import org.springframework.web.bind.annotation.*;
 import waterDelivery.dto.customerDTO.CustomerCreateDTO;
+import waterDelivery.dto.customerDTO.CustomerReadDTO;
 import waterDelivery.dto.customerDTO.CustomerUpdateDTO;
 import waterDelivery.service.CustomerService;
 import waterDelivery.service.OrderService;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
-public class CustomerRestControllerImpl implements CustomerRestController{
+public class CustomerRestControllerImpl implements CustomerRestController {
 
-    @Autowired
-    private CustomerService customerService;
-    @Autowired
-    private OrderService orderService;
+    private final CustomerService customerService;
+    private final OrderService orderService;
+
+    public CustomerRestControllerImpl(CustomerService customerService, OrderService orderService) {
+        this.customerService = customerService;
+        this.orderService = orderService;
+    }
 
     @Override
     public List<Customer> getAll() {
@@ -53,16 +56,22 @@ public class CustomerRestControllerImpl implements CustomerRestController{
     }
 
     @Override
-    public  CustomerUpdateDTO updateCustomer(@PathVariable("id") long id, @RequestBody CustomerUpdateDTO requestForUpd){
+    public CustomerUpdateDTO updateCustomer(@PathVariable("id") long id, @RequestBody CustomerUpdateDTO requestForUpd) {
         Customer customer = CustomerMapper.INSTANCE.toUpdateCustomer(requestForUpd);
         return CustomerMapper.INSTANCE.toUpdateDto(customerService.updateCustomer(customer));
     }
 
-
     @Override
     public CustomerCreateDTO saveCustomer(@RequestBody CustomerCreateDTO requestForSave) {
+
         Customer customer = CustomerMapper.INSTANCE.toSaveCustomer(requestForSave);
         return CustomerMapper.INSTANCE.toSaveDto(customerService.saveCustomer(customer));
+    }
+
+    @PatchMapping("/customers/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePhone(@PathVariable Long id, @RequestParam @NotNull String newPhone) {
+        customerService.changePhone(newPhone, id);
     }
 
     /*@Override
