@@ -38,7 +38,7 @@ Logging - (soon)
 There are GET, POST, PUT and PATCH requests.
 
 Import requests collection using link
->https://www.getpostman.com/collections/0b75b5af70a092c2903a
+>https://www.getpostman.com/collections/b06cc2556324e44890f4
 
 1. In Postman click on Import button.
 2. Click on Link tab.
