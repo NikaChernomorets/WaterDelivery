@@ -33,7 +33,7 @@ Logging - (soon)
 
 ### Getting a request collection
 
-###How do I get them?  :thinking:
+### How do I get them?  :thinking:
 
 There are GET, POST, PUT and PATCH requests.
 
