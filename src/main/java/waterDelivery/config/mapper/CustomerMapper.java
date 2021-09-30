@@ -8,6 +8,8 @@ import waterDelivery.dto.customerDTO.CustomerReadDTO;
 import waterDelivery.dto.customerDTO.CustomerCreateDTO;
 import waterDelivery.dto.customerDTO.CustomerUpdateDTO;
 
+import java.util.List;
+
 
 @Mapper (componentModel = "spring")
 public interface CustomerMapper
@@ -18,6 +20,8 @@ public interface CustomerMapper
     CustomerCreateDTO toSaveDto(Customer customer );
     CustomerUpdateDTO toUpdateDto(Customer customer );
     CustomerDeleteDTO toDeleteDto(Customer customer );
+
+    List<CustomerReadDTO> toReadDtoList(List<Customer> customer);
 
     Customer toSaveCustomer(CustomerCreateDTO customerSaveDTO);
     Customer toReadCustomer(CustomerReadDTO customerReadDTO);
