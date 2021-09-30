@@ -1,3 +1,4 @@
+
 package waterDelivery.config.mapper;
 
 import org.mapstruct.Mapper;
@@ -15,20 +16,15 @@ import java.util.List;
 public interface CustomerMapper
 {
     CustomerMapper INSTANCE = Mappers.getMapper( CustomerMapper.class );
-    
+
     CustomerReadDTO toReadDto(Customer customer );
     CustomerCreateDTO toSaveDto(Customer customer );
     CustomerUpdateDTO toUpdateDto(Customer customer );
     CustomerDeleteDTO toDeleteDto(Customer customer );
-    
     List<CustomerReadDTO> toReadDtoList(List<Customer> customer);
-
-    List<CustomerReadDTO> toReadDtoList(List<Customer> customer);
-
     Customer toSaveCustomer(CustomerCreateDTO customerSaveDTO);
     Customer toReadCustomer(CustomerReadDTO customerReadDTO);
     Customer toUpdateCustomer(CustomerUpdateDTO customerUpdateDTO);
     Customer toDeleteCustomer(CustomerDeleteDTO customerDeleteDTO);
-
 
 }
