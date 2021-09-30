@@ -20,8 +20,6 @@ public class Order
     
     private String cost;
     
-    @OneToOne( mappedBy = "order" ) private Customer customer;
-    
     public long getId()
     {
         return id;
@@ -80,16 +78,6 @@ public class Order
     public void setCost( String cost )
     {
         this.cost = cost;
-    }
-    
-    public Customer getCustomer()
-    {
-        return customer;
-    }
-    
-    public void setCustomer( Customer customer )
-    {
-        this.customer = customer;
     }
     
     public Order() { }

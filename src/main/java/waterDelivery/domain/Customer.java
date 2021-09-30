@@ -2,7 +2,10 @@ package waterDelivery.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.Hibernate;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,13 +22,15 @@ public class Customer
     
     private String phone;
     
-    @Column( name = "is_deleted" ) private Boolean isDeleted = Boolean.FALSE;
+    @Column( name = "is_deleted" )
+    private Boolean isDeleted = Boolean.FALSE;
     
-    @OneToOne( cascade = CascadeType.PERSIST,
-               fetch = FetchType.EAGER )
+    @OneToMany( fetch = FetchType.EAGER,
+               cascade = CascadeType.ALL,
+               orphanRemoval = true )
     @JoinColumn( name = "order_fk" )
     @JsonProperty( access = JsonProperty.Access.WRITE_ONLY )
-    private Order order;
+    private List <Order> orderList = new ArrayList <>();
     
     @Override
     public boolean equals( Object o )
@@ -92,15 +97,9 @@ public class Customer
         isDeleted = deleted;
     }
     
-    public Order getOrder()
-    {
-        return order;
-    }
+    public List <Order> getOrderList() { return orderList; }
     
-    public void setOrder( Order order )
-    {
-        this.order = order;
-    }
+    public void setOrderList( List <Order> orderList ) { this.orderList = orderList; }
     
     public Customer() { }
 }
