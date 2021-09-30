@@ -3,22 +3,26 @@ package waterDelivery.dto.orderDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public class OrderUpdateDTO {
+
     @Schema(description = "Id of the order.",
             example = "1",
             required = true)
     private long id;
+
     @Schema( description = "Name of the order.",
             example = "[№]Order_[Name_LastName]",
             required = true )
-    private String orderName;
+    private String name;
+
     @Schema( description = "Status of the order.",
             example = "Order [IN PROGRESS]",
             required = true )
-    private String orderStatus;
+    private String status;
+
     @Schema( description = "How coast the order.",
             example = "Order Coast: [500$]",
             required = true )
-    private String orderCost;
+    private String cost;
 
     public long getId()
     {
@@ -30,33 +34,33 @@ public class OrderUpdateDTO {
         this.id = id;
     }
 
-    public String getOrderName()
+    public String getName()
     {
-        return orderName;
+        return name;
     }
 
-    public void setOrderName(String orderName)
+    public void setName(String name)
     {
-        this.orderName = orderName;
+        this.name = name;
     }
 
-    public String getOrderStatus()
+    public String getStatus()
     {
-        return orderStatus;
+        return status;
     }
 
-    public void setOrderStatus(String orderStatus)
+    public void setStatus(String status)
     {
-        this.orderStatus = orderStatus;
+        this.status = status;
     }
 
-    public String getOrderCost()
+    public String getCost()
     {
-        return orderCost;
+        return cost;
     }
 
-    public void setOrderCost(String orderCost)
+    public void setCost(String cost)
     {
-        this.orderCost = orderCost;
+        this.cost = cost;
     }
 }
