@@ -52,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> getCustomerByFirstName(String firstName) {
+    public List<Customer> getCustomersByFirstName(String firstName) {
         List<Customer> customers = repository.findByFirstName(firstName, CustomerRepository.pageableAndSortAscByFirstName);
         log.debug("getCustomerByFirstName - succeed");
         if (customers.toArray().length < 1)
@@ -66,7 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> getCustomerByLastName(String lastName) {
+    public List<Customer> getCustomersByLastName(String lastName) {
         List<Customer> customers = repository.findByLastName(lastName, CustomerRepository.pageableAndSortAscByLastName);
         log.info("getCustomerByLastName - succeed");
         if (customers.toArray().length < 1)
@@ -80,7 +80,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> getCustomerByPhone(String phone) {
+    public List<Customer> getCustomersByPhone(String phone) {
         List<Customer> customers = repository.findByPhone(phone, CustomerRepository.pageableAndSortAscByPhone);
         log.info("getCustomerByPhone - succeed");
         if (customers.toArray().length < 1)
@@ -103,7 +103,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     }
 
-
+    //TODO is it needed?
  /*   @Override
     public Customer getCustomerByOrder(String orderName)
     {
@@ -128,9 +128,9 @@ public class CustomerServiceImpl implements CustomerService {
     */
 
     @Override
-    public Customer updateCustomer(Customer customer) {
+    public Customer updateCustomer(Long id, Customer customer) {
         log.info("updateCustomer - succeed");
-        return repository.findById(customer.getId())
+        return repository.findById(id)
                 .map(entity -> {
                     entity.setFirstName(customer.getFirstName());
                     entity.setLastName(customer.getLastName());

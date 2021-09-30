@@ -51,9 +51,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order updateOrder(Order order) {
+    public void updateOrder(long id, Order order) {
         log.info("updateOrder - start");
-        return orderRepository.findById(order.getId())
+        orderRepository.findById(id)
                 .map(entity -> {
                     entity.setName(order.getName());
                     entity.setCost(order.getCost());
