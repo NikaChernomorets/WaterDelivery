@@ -18,6 +18,8 @@ public interface CustomerMapper
     CustomerCreateDTO toSaveDto(Customer customer );
     CustomerUpdateDTO toUpdateDto(Customer customer );
     CustomerDeleteDTO toDeleteDto(Customer customer );
+    
+    List<CustomerReadDTO> toReadDtoList(List<Customer> customer);
 
     Customer toSaveCustomer(CustomerCreateDTO customerSaveDTO);
     Customer toReadCustomer(CustomerReadDTO customerReadDTO);
