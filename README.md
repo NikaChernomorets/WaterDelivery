@@ -29,3 +29,20 @@ Logging - (soon)
 3. Run .jar file.
 
 >java -jar water-delivery-system-0.0.1-SNAPSHOT.jar
+
+
+### Getting a request collection
+
+###How do I get them?  :thinking:
+
+There are GET, POST, PUT and PATCH requests.
+
+Import requests collection using link
+>https://www.getpostman.com/collections/0b75b5af70a092c2903a
+
+1. In Postman click on Import button.
+2. Click on Link tab.
+3. Paste link in box and click Continue
+4. Collection is ready!
+
+
