@@ -21,7 +21,6 @@ public interface OrderRestController {
 
 
     @Operation(summary = "Get order by Id", description = "endpoint for getting order by ID", tags = {"Order"})
-    @ResponseStatus(HttpStatus.OK)
     OrderReadDTO getById(@PathVariable long id);
 
 
@@ -33,6 +32,7 @@ public interface OrderRestController {
     OrderReadDTO saveOrder(OrderCreateDTO orderCreateDto);
 
 
+    @Operation(summary = "Update order by Id", description = "endpoint for updating order by ID", tags = {"Order"})
     OrderReadDTO updateOrder(@PathVariable("id") long id, @RequestBody OrderUpdateDTO orderUpdateDTO);
 
 }
