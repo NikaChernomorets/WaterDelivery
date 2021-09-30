@@ -8,7 +8,7 @@ public class Order
 {
     @Id
     @GeneratedValue( strategy = GenerationType.SEQUENCE )
-    private long id;
+    private long id; //TODO: use long type or Long ?
     
     private String name;
     
