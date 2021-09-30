@@ -1,16 +1,22 @@
 package waterDelivery.config.mapper;
 
-import waterDelivery.dto.OrderDTO;
+import waterDelivery.dto.orderDTO.OrderReadDTO;
 import waterDelivery.domain.Order;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import waterDelivery.dto.orderDTO.OrderCreateDTO;
+import waterDelivery.dto.orderDTO.OrderUpdateDTO;
 
 @Mapper
 public interface OrderMapper
 {
-    OrderMapper INSTANCE = Mappers.getMapper( OrderMapper.class );
+    OrderMapper orderINSTANCE = Mappers.getMapper( OrderMapper.class );
     
-    OrderDTO toOrderDTO( Order entity );
-    
-    Order toOrder(OrderDTO dto);
+    OrderReadDTO toOrderReadDTO(Order order );
+    OrderCreateDTO toOrderSaveDTO(Order order );
+    OrderUpdateDTO toOrderUpdateDTO(Order order );
+
+    Order toReadOrder(OrderReadDTO orderReadDTO);
+    Order toSaveOrder(OrderCreateDTO orderCreateDTO);
+    Order toUpdateOrder(OrderUpdateDTO orderUpdateDTO);
 }

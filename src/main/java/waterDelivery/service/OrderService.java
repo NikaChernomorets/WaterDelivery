@@ -14,9 +14,6 @@ public interface OrderService {
 
     List<Order> getAllOrders();
 
-    Order updateOrder(final Order order);
+    void updateOrder(long id, Order order);
 
-    void removeOrderById(final Long id);
-
-    void removeAllOrders();
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import waterDelivery.domain.Customer;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,10 +19,31 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
-public class ControllerAdvisor extends ResponseEntityExceptionHandler {
+public class AdviceController extends ResponseEntityExceptionHandler {
+
+
+    @ExceptionHandler(OrderIsAlreadyExistException.class)
+    public ResponseEntity<Object> handleOrderIsAlreadyExistException(OrderIsAlreadyExistException ex, WebRequest request){
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("message", "Order is already exist!");
+
+        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+    }
+
+
+    @ExceptionHandler(CustomerIsAlreadyExistException.class)
+    public ResponseEntity<Object> handleCustomerIsAlreadyExistException(CustomerIsAlreadyExistException ex, WebRequest request){
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("message", "Customer is already exist!");
+
+        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+    }
+
 
     @ExceptionHandler(OrderNotFoundException.class)
-    public ResponseEntity<Object> handleCityNotFoundException(
+    public ResponseEntity<Object> handleOrderNotFoundException(
             OrderNotFoundException ex, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();
@@ -31,13 +53,25 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(CustomerNotFoundException.class)
+    public ResponseEntity<Object> handleCustomerNotFoundException(
+            CustomerNotFoundException ex, WebRequest request) {
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("message", "Customer not found");
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+
+
     @ExceptionHandler(NoDataFoundException.class)
-    public ResponseEntity<Object> handleNodataFoundException(
+    public ResponseEntity<Object> handleNoDataFoundException(
             NoDataFoundException ex, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
-        body.put("message", "No orders found");
+        body.put("message", "No data found");
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }

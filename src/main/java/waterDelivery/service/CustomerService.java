@@ -3,6 +3,7 @@ package waterDelivery.service;
 import waterDelivery.domain.Customer;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface CustomerService {
@@ -19,17 +20,19 @@ public interface CustomerService {
 
     Customer getCustomerById(final Long id);
 
-    List<Customer> getCustomerByFirstName(final String firstName);
+    List<Customer> getCustomersByFirstName(final String firstName);
 
-    List<Customer> getCustomerByLastName(final String lastName);
+    List<Customer> getCustomersByLastName(final String lastName);
 
-    List<Customer> getCustomerByPhone(final String phone);
+    List<Customer> getCustomersByPhone(final String phone);
+
+    void changePhone(String newPhone, Long id);
 
    /* List<Order> getValues(final String name);
 
     Customer getCustomerByOrder(final String orderName);*/
 
-    Customer updateCustomer(final Customer customer);
+    Customer updateCustomer(Long id, Customer customer);
 
     void removeCustomerById(final Long id);
 
