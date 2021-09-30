@@ -81,15 +81,13 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> getCustomersByFirstName(String firstName) {
         List<Customer> customers = customerRepository.findByFirstName(firstName, CustomerRepository.pageableAndSortAscByFirstName);
+
         log.debug("getCustomerByFirstName - succeed");
+
         if (customers.toArray().length < 1)
             throw new EntityNotFoundException("Customer not found with firstName = " + firstName);
-        for (int i = 0; i < customers.toArray().length; i++) {
-            if (customers.get(i).getDeleted()) {
-                customers.remove(i--);
-            }
-        }
-        return customers;
+        else
+            return customers;
     }
 
     @Override
@@ -98,14 +96,10 @@ public class CustomerServiceImpl implements CustomerService {
         log.info("getCustomerByLastName - succeed");
         if (customers.isEmpty())
             throw new EntityNotFoundException("Customer not found with Lastname = " + lastName);
+        else
+            return customers;
 
-        //TODO No idea what is for
-        for (int i = 0; i < customers.toArray().length; i++) {
-            if (customers.get(i).getDeleted()) {
-                customers.remove(i--);
-            }
-        }
-        return customers;
+
     }
 
     @Override
@@ -114,12 +108,9 @@ public class CustomerServiceImpl implements CustomerService {
         log.info("getCustomerByPhone - succeed");
         if (customers.isEmpty())
             throw new EntityNotFoundException("Customer not found with phone = " + phone);
-        for (int i = 0; i < customers.toArray().length; i++) {
-            if (customers.get(i).getDeleted()) {
-                customers.remove(i--);
-            }
-        }
-        return customers;
+        else
+            return customers;
+
     }
 
     @Override
