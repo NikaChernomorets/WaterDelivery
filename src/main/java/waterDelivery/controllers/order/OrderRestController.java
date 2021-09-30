@@ -6,32 +6,33 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import waterDelivery.domain.Order;
+import waterDelivery.dto.customerDTO.CustomerUpdateDTO;
 import waterDelivery.dto.orderDTO.OrderReadDTO;
 import waterDelivery.dto.orderDTO.OrderCreateDTO;
+import waterDelivery.dto.orderDTO.OrderUpdateDTO;
 
 import java.util.List;
 @RequestMapping("/default")
 public interface OrderRestController {
 
-    @GetMapping("/orders")
+
     @Operation(summary = "Get All orders", description = "endpoint for getting All orders", tags = {"Order"})
-    @ResponseStatus(HttpStatus.OK)
     List<Order> getAll();
 
-    @GetMapping("/orders/{id}")
+
     @Operation(summary = "Get order by Id", description = "endpoint for getting order by ID", tags = {"Order"})
-    @ResponseStatus(HttpStatus.OK)
     OrderReadDTO getById(@PathVariable long id);
-/*
-    @PostMapping("/orders
-  ")
-    @ResponseStatus(HttpStatus.CREATED)
+
+
     @Operation(summary = "Add a new order", description = "endpoint for creating an entity", tags = {"Order"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Order created"),
             @ApiResponse(responseCode = "400", description = "Invalid input"),
             @ApiResponse(responseCode = "409", description = "Order already exists")})
-    OrderCreateDTO saveOrder(OrderCreateDTO orderCreateDto);*/
+    OrderReadDTO saveOrder(OrderCreateDTO orderCreateDto);
 
+
+    @Operation(summary = "Update order by Id", description = "endpoint for updating order by ID", tags = {"Order"})
+    OrderReadDTO updateOrder(@PathVariable("id") long id, @RequestBody OrderUpdateDTO orderUpdateDTO);
 
 }

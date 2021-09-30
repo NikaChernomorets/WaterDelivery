@@ -2,14 +2,16 @@ package waterDelivery.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.var;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import waterDelivery.domain.Order;
 import waterDelivery.exception.NoDataFoundException;
+import waterDelivery.exception.OrderIsAlreadyExistException;
 import waterDelivery.exception.OrderNotFoundException;
 import waterDelivery.repository.OrderRepository;
 import waterDelivery.service.OrderService;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -24,9 +26,24 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order saveOrder(Order order) {
         log.info("saveOrder() - start: order = {}", order);
-        var savedOrder = orderRepository.save(order);
-        log.info("saveOrder() - end: order = {}", savedOrder.getId());
-        return savedOrder;
+
+        if(isExists(order)){
+            log.error("customerRepository.save() - exception");
+            throw new OrderIsAlreadyExistException();
+        }
+        else{
+            var savedOrder = orderRepository.save(order);
+            log.info("saveOrder() - end: order = {}", savedOrder.getId());
+            return savedOrder;
+        }
+    }
+
+    private boolean isExists(Order order) {
+        ExampleMatcher modelMatcher = ExampleMatcher.matching()
+                .withIgnorePaths("id");
+
+        Example<Order> example = Example.of(order, modelMatcher);
+        return orderRepository.exists(example);
     }
 
     @Override
@@ -45,22 +62,24 @@ public class OrderServiceImpl implements OrderService {
             log.error("orderRepository.findAll() - exception");
             throw new NoDataFoundException();
         }
-        var allOrders = orderRepository.findAll();
-        log.info("orderRepository.findAll() - end");
-        return allOrders;
+        else{
+            log.info("orderRepository.findAll() - end");
+            return orders;
+        }
     }
 
+
     @Override
-    public Order updateOrder(Order order) {
+    public void updateOrder(long id, Order order) {
         log.info("updateOrder - start");
-        return orderRepository.findById(order.getId())
+        orderRepository.findById(id)
                 .map(entity -> {
                     entity.setName(order.getName());
                     entity.setCost(order.getCost());
                     entity.setStatus(order.getStatus());
                     return orderRepository.save(entity);
                 })
-                .orElseThrow(() -> new EntityNotFoundException("Order not found with id = " + order.getId()));
+                .orElseThrow(() -> new OrderNotFoundException(id));
     }
 
 }
