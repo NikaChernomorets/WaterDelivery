@@ -12,7 +12,7 @@ import waterDelivery.dto.orderDTO.OrderCreateDTO;
 import waterDelivery.dto.orderDTO.OrderUpdateDTO;
 
 import java.util.List;
-@RequestMapping("/default")
+
 public interface OrderRestController {
 
 

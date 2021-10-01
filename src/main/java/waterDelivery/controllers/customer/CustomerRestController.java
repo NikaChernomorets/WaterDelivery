@@ -15,8 +15,6 @@ import waterDelivery.dto.customerDTO.CustomerUpdateDTO;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-
-@RequestMapping("/default")
 public interface CustomerRestController {
 
 
