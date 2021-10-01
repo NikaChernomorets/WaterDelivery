@@ -123,30 +123,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     }
 
-    //TODO is it needed?
- /*   @Override
-    public Customer getCustomerByOrder(String orderName)
-    {
-        List<Order> orderList = getValues(orderName);
-
-        if (orderList.toArray().length < 1)
-            throw new EntityNotFoundException("Customer not found with phone = " + orderName);
-        for (int i = 0; i < orderList.toArray().length; i++)
-        {
-            if (orderList.get(i).getName() == orderName)
-            {
-                List<Customer> customers = repository.findAll();
-                for (int j = 0; j<customers.toArray().length;j++)
-                {
-                    if (orderList.get(i).getId()==customers.get(j).getOrder())
-                        return customers.get(j);
-                }
-            }
-        }
-        return null;
-    }
-    */
-
     @Override
     public Customer updateCustomer(Long id, Customer customer) {
         log.info("updateCustomer - succeed");

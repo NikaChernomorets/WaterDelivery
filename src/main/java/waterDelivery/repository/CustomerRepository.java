@@ -36,9 +36,4 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     @Query("update Customer c set c.phone = ?1 where c.id = ?2")
     @Transactional
     void changeCustomerPhone(String phone, Long id);
-
-   /* @Query(value = "SELECT id, name FROM Orders WHERE name = orderName INNER JOIN Customers ON Orders.ID = Customers.Order_fk;", nativeQuery = true)
-    List<Order> getValues(String orderName);
-
-    List<Customer> findByOrder(String orderName);*/
 }
