@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 
 public class SimpleEmailExampleController {
-    @Autowired
-    public JavaMailSender emailSender;
 
+    public JavaMailSender emailSender;
+    public SimpleEmailExampleController(JavaMailSender emailSender)
+    {
+        this.emailSender = emailSender;
+    }
 
     @PostMapping ("/sendSimpleEmail")
     public String sendSimpleEmail() {
