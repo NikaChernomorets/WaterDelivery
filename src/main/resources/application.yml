@@ -17,7 +17,14 @@ spring:
     generate-ddl: true
 # Server configuration
 server:
-  port: 8089 #set your port
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: password
+    key-store-type: pkcs12
+    key-alias: WaterDelivery
+    key-password: password
+  port: 8089
+
 # Swagger configuration
 springdoc:
   swagger-ui:
