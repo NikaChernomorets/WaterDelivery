@@ -1,5 +1,7 @@
 package waterDelivery.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,10 @@ public class Order
     private String status;
     
     private String cost;
+    
+    @ManyToOne(targetEntity = Customer.class)
+    @JsonIgnore
+    private Customer customer;
     
     public long getId()
     {
