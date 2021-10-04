@@ -3,15 +3,18 @@ package waterDelivery.controllers.order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import waterDelivery.config.mapper.CustomerMapper;
 import waterDelivery.config.mapper.OrderMapper;
-import waterDelivery.controllers.customer.CustomerRestController;
 import waterDelivery.domain.Order;
+import waterDelivery.dto.customerDTO.CustomerReadDTO;
 import waterDelivery.dto.orderDTO.OrderCreateDTO;
 import waterDelivery.dto.orderDTO.OrderReadDTO;
 import waterDelivery.dto.orderDTO.OrderUpdateDTO;
+import waterDelivery.repository.CustomerRepository;
 import waterDelivery.service.CustomerService;
 import waterDelivery.service.OrderService;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -19,10 +22,11 @@ import java.util.List;
 public class OrderRestControllerImpl implements OrderRestController {
 
     private final OrderService orderService;
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
-    public OrderRestControllerImpl(OrderService orderService) {
+    public OrderRestControllerImpl(OrderService orderService, CustomerService customerService) {
         this.orderService = orderService;
+        this.customerService = customerService;
     }
 
     @Override
@@ -60,9 +64,9 @@ public class OrderRestControllerImpl implements OrderRestController {
     @Override
     @PatchMapping("/orders/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public OrderReadDTO addOrderToCustomerByTheirId(@PathVariable long id, OrderCreateDTO requestForSave) {
+    public void addOrderToCustomerByTheirId(@PathVariable long id, OrderCreateDTO requestForSave) {
         Order order = OrderMapper.orderINSTANCE.toSaveOrder(requestForSave);
-        return OrderMapper.orderINSTANCE.toOrderReadDTO(orderService.saveOrder(order));
+        if(customerService.getCustomerById(id).;)
     }
 }
 
