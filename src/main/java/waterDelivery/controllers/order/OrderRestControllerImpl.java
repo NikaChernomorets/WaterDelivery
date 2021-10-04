@@ -22,11 +22,11 @@ import java.util.List;
 public class OrderRestControllerImpl implements OrderRestController {
 
     private final OrderService orderService;
-    private final CustomerService customerService;
+    private final CustomerRepository customerRepository;
 
-    public OrderRestControllerImpl(OrderService orderService, CustomerService customerService) {
+    public OrderRestControllerImpl(OrderService orderService, CustomerRepository customerRepository) {
         this.orderService = orderService;
-        this.customerService = customerService;
+        this.customerRepository = customerRepository;
     }
 
     @Override
@@ -64,9 +64,15 @@ public class OrderRestControllerImpl implements OrderRestController {
     @Override
     @PatchMapping("/orders/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void addOrderToCustomerByTheirId(@PathVariable long id, OrderCreateDTO requestForSave) {
+    public OrderCreateDTO addOrderToCustomerByTheirId(@PathVariable long id, OrderCreateDTO requestForSave) {
         Order order = OrderMapper.orderINSTANCE.toSaveOrder(requestForSave);
-        if(customerService.getCustomerById(id).;)
+        return customerRepository.findById(id)
+                .map(entity -> {
+                    entity.addOrder(order);
+                    customerRepository.save(entity);
+                    return requestForSave;
+                })
+                .orElseThrow(() -> new EntityNotFoundException("Entity doesn't exist. Please try again!"));
     }
 }
 

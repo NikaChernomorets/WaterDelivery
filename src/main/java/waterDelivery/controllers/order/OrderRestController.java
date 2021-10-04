@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.web.bind.annotation.*;
+import waterDelivery.domain.Customer;
 import waterDelivery.domain.Order;
 import waterDelivery.dto.customerDTO.CustomerReadDTO;
 import waterDelivery.dto.orderDTO.OrderReadDTO;
@@ -35,5 +36,5 @@ public interface OrderRestController {
     OrderReadDTO updateOrder(@PathVariable("id") long id, @RequestBody OrderUpdateDTO orderUpdateDTO);
 
     @Operation(summary = "to order by a client ID", description = "endpoint for adding order by a certain client", tags = {"Order"})
-    void addOrderToCustomerByTheirId(@PathVariable long id, @RequestBody OrderCreateDTO requestForSave);
+    OrderCreateDTO addOrderToCustomerByTheirId(@PathVariable long id, @RequestBody OrderCreateDTO requestForSave);
 }

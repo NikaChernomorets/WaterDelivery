@@ -43,7 +43,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
 
-    public boolean isExists(Customer customer) {
+    private boolean isExists(Customer customer) {
         ExampleMatcher modelMatcher = ExampleMatcher.matching()
                 .withIgnorePaths("id");
         Example<Customer> example = Example.of(customer, modelMatcher);
