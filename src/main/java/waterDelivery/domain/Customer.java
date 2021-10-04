@@ -100,6 +100,12 @@ public class Customer
     public List <Order> getOrderList() { return orderList; }
     
     public void setOrderList( List <Order> orderList ) { this.orderList = orderList; }
+
+    public void addOrder(Order order){
+        orderList.add(order);
+    }
     
     public Customer() { }
+
+
 }

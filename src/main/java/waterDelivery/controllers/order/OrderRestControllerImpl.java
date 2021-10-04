@@ -4,19 +4,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import waterDelivery.config.mapper.OrderMapper;
+import waterDelivery.controllers.customer.CustomerRestController;
 import waterDelivery.domain.Order;
 import waterDelivery.dto.orderDTO.OrderCreateDTO;
 import waterDelivery.dto.orderDTO.OrderReadDTO;
 import waterDelivery.dto.orderDTO.OrderUpdateDTO;
+import waterDelivery.service.CustomerService;
 import waterDelivery.service.OrderService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
-public class OrderRestControllerImpl implements OrderRestController{
+public class OrderRestControllerImpl implements OrderRestController {
 
     private final OrderService orderService;
+    private CustomerService customerService;
 
     public OrderRestControllerImpl(OrderService orderService) {
         this.orderService = orderService;
@@ -54,4 +57,12 @@ public class OrderRestControllerImpl implements OrderRestController{
         return OrderMapper.orderINSTANCE.toOrderReadDTO(order);
     }
 
+    @Override
+    @PatchMapping("/orders/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public OrderReadDTO addOrderToCustomerByTheirId(@PathVariable long id, OrderCreateDTO requestForSave) {
+        Order order = OrderMapper.orderINSTANCE.toSaveOrder(requestForSave);
+        return OrderMapper.orderINSTANCE.toOrderReadDTO(orderService.saveOrder(order));
+    }
 }
+

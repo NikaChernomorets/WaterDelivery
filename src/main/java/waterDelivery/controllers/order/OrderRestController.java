@@ -35,4 +35,6 @@ public interface OrderRestController {
     @Operation(summary = "Update order by Id", description = "endpoint for updating order by ID", tags = {"Order"})
     OrderReadDTO updateOrder(@PathVariable("id") long id, @RequestBody OrderUpdateDTO orderUpdateDTO);
 
+    @Operation(summary = "to order by a client ID", description = "endpoint for adding order by a certain client", tags = {"Order"})
+    OrderReadDTO addOrderToCustomerByTheirId(@PathVariable long id, @RequestBody OrderCreateDTO requestForSave);
 }
