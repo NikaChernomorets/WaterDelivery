@@ -3,23 +3,30 @@ package waterDelivery.controllers.order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import waterDelivery.config.mapper.CustomerMapper;
 import waterDelivery.config.mapper.OrderMapper;
 import waterDelivery.domain.Order;
+import waterDelivery.dto.customerDTO.CustomerReadDTO;
 import waterDelivery.dto.orderDTO.OrderCreateDTO;
 import waterDelivery.dto.orderDTO.OrderReadDTO;
 import waterDelivery.dto.orderDTO.OrderUpdateDTO;
+import waterDelivery.repository.CustomerRepository;
+import waterDelivery.service.CustomerService;
 import waterDelivery.service.OrderService;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
-public class OrderRestControllerImpl implements OrderRestController{
+public class OrderRestControllerImpl implements OrderRestController {
 
     private final OrderService orderService;
+    private final CustomerRepository customerRepository;
 
-    public OrderRestControllerImpl(OrderService orderService) {
+    public OrderRestControllerImpl(OrderService orderService, CustomerRepository customerRepository) {
         this.orderService = orderService;
+        this.customerRepository = customerRepository;
     }
 
     @Override
@@ -54,4 +61,18 @@ public class OrderRestControllerImpl implements OrderRestController{
         return OrderMapper.orderINSTANCE.toOrderReadDTO(order);
     }
 
+    @Override
+    @PatchMapping("/orders/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public OrderCreateDTO addOrderToCustomerByTheirId(@PathVariable long id, OrderCreateDTO requestForSave) {
+        Order order = OrderMapper.orderINSTANCE.toSaveOrder(requestForSave);
+        return customerRepository.findById(id)
+                .map(entity -> {
+                    entity.addOrder(order);
+                    customerRepository.save(entity);
+                    return requestForSave;
+                })
+                .orElseThrow(() -> new EntityNotFoundException("Entity doesn't exist. Please try again!"));
+    }
 }
+
