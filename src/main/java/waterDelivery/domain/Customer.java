@@ -40,4 +40,7 @@ public class Customer {
     public Customer() {
     }
 
+    public void addOrder(Order order) {
+        orderList.add(order);
+    }
 }

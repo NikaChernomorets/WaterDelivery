@@ -11,6 +11,7 @@ import waterDelivery.dto.customerDTO.CustomerDeleteDTO;
 import waterDelivery.dto.customerDTO.CustomerReadDTO;
 import waterDelivery.dto.customerDTO.CustomerCreateDTO;
 import waterDelivery.dto.customerDTO.CustomerUpdateDTO;
+import waterDelivery.dto.orderDTO.OrderCreateDTO;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -57,5 +58,8 @@ public interface CustomerRestController {
 
     @Operation(summary = "Update customer's phone", description = "endpoint for updating an entity field", tags = {"Customer"})
     void updatePhone(@PathVariable Long id, @RequestParam @NotNull String newPhone);
+
+    @Operation(summary = "to order by a client ID", description = "endpoint for adding order by a certain client", tags = {"Order"})
+    OrderCreateDTO addOrderToCustomerByTheirId(@PathVariable long id, @RequestBody OrderCreateDTO requestForSave);
 
 }
