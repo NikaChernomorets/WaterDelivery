@@ -4,12 +4,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import waterDelivery.config.mapper.CustomerMapper;
+import waterDelivery.config.mapper.OrderMapper;
 import waterDelivery.domain.Customer;
+import waterDelivery.domain.Order;
 import waterDelivery.dto.customerDTO.CustomerCreateDTO;
 import waterDelivery.dto.customerDTO.CustomerReadDTO;
 import waterDelivery.dto.customerDTO.CustomerUpdateDTO;
+import waterDelivery.dto.orderDTO.OrderCreateDTO;
+import waterDelivery.repository.CustomerRepository;
 import waterDelivery.service.CustomerService;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -18,9 +23,11 @@ import java.util.List;
 public class CustomerRestControllerImpl implements CustomerRestController {
 
     private final CustomerService customerService;
+    private final CustomerRepository customerRepository;
 
-    public CustomerRestControllerImpl(CustomerService customerService) {
+    public CustomerRestControllerImpl(CustomerService customerService, CustomerRepository customerRepository) {
         this.customerService = customerService;
+        this.customerRepository = customerRepository;
     }
 
     @Override
@@ -94,5 +101,19 @@ public class CustomerRestControllerImpl implements CustomerRestController {
         Customer customer = customerService.getCustomerById(id);
         customerService.removeCustomerById(id);
         return CustomerMapper.INSTANCE.toReadDto(customer);
+    }
+
+    @Override
+    @PatchMapping("/customers/{id}/orders")
+    @ResponseStatus(HttpStatus.OK)
+    public OrderCreateDTO addOrderToCustomerByTheirId(@PathVariable long id, OrderCreateDTO requestForSave) {
+        Order order = OrderMapper.orderINSTANCE.toSaveOrder(requestForSave);
+        return customerRepository.findById(id)
+                .map(entity -> {
+                    entity.addOrder(order);
+                    customerRepository.save(entity);
+                    return requestForSave;
+                })
+                .orElseThrow(() -> new EntityNotFoundException("Entity doesn't exist. Please try again!"));
     }
 }

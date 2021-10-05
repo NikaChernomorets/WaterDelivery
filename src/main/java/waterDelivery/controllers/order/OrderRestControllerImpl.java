@@ -61,18 +61,6 @@ public class OrderRestControllerImpl implements OrderRestController {
         return OrderMapper.orderINSTANCE.toOrderReadDTO(order);
     }
 
-    @Override
-    @PatchMapping("/orders/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public OrderCreateDTO addOrderToCustomerByTheirId(@PathVariable long id, OrderCreateDTO requestForSave) {
-        Order order = OrderMapper.orderINSTANCE.toSaveOrder(requestForSave);
-        return customerRepository.findById(id)
-                .map(entity -> {
-                    entity.addOrder(order);
-                    customerRepository.save(entity);
-                    return requestForSave;
-                })
-                .orElseThrow(() -> new EntityNotFoundException("Entity doesn't exist. Please try again!"));
-    }
+
 }
 
