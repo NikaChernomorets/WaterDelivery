@@ -33,7 +33,7 @@ public class Customer {
     @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    @JoinColumn(name = "order_fk")
+    @JoinColumn(name = "customer_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Order> orderList = new ArrayList<>();
 
