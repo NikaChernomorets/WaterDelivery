@@ -1,8 +1,8 @@
 package waterDelivery.service.impl;
 
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
@@ -18,30 +18,23 @@ import java.util.List;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
 
-    public CustomerServiceImpl(CustomerRepository repository) {
-        this.customerRepository = repository;
-    }
-
     @Override
     public Customer saveCustomer(Customer customer) {
         log.info("saveCustomer() - start: customer = {}", customer);
-
-
-        if(isExists(customer)){
+        if (isExists(customer)) {
             log.error("customerRepository.save() - exception");
             throw new CustomerIsAlreadyExistException();
-        }
-        else{
-            var savedCustomer = customerRepository.save(customer);
+        } else {
+            Customer savedCustomer = customerRepository.save(customer);
             log.info("saveCustomer() - end: savedCustomer() = {}", savedCustomer.getId());
             return savedCustomer;
         }
     }
-
 
     private boolean isExists(Customer customer) {
         ExampleMatcher modelMatcher = ExampleMatcher.matching()
@@ -49,7 +42,6 @@ public class CustomerServiceImpl implements CustomerService {
         Example<Customer> example = Example.of(customer, modelMatcher);
         return customerRepository.exists(example);
     }
-
 
     @Override
     public List<Customer> getAllCustomers() {
@@ -70,7 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerNotFoundException(id));
 
-        if (customer.getDeleted()) {
+        if (customer.getIsDeleted()) {
             log.error("Customer is Deleted - yes");
             throw new CustomerNotFoundException(id);
         }
@@ -165,7 +157,7 @@ public class CustomerServiceImpl implements CustomerService {
         log.info("removeCustomerById - succeed");
         customerRepository.findById(id)
                 .map(customer -> {
-                    customer.setDeleted(Boolean.TRUE);
+                    customer.setIsDeleted(Boolean.TRUE);
                     return customerRepository.save(customer);
                 })
                 .orElseThrow(() -> new CustomerNotFoundException(id));

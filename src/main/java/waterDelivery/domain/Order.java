@@ -2,10 +2,13 @@ package waterDelivery.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.experimental.Accessors;
+
 import javax.persistence.*;
 
 @Entity
 @Table( name = "ORDERS" )
+@Accessors(chain = true)
 public class Order
 {
     @Id
