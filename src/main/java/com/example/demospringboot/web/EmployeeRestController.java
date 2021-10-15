@@ -47,7 +47,6 @@ public class EmployeeRestController {
     @GetMapping("/users")
     @ResponseStatus(HttpStatus.OK)
     public List<CustomerDto> getAllUsers() {
-
         return null;
     }
 
